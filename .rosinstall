@@ -4,6 +4,10 @@
     uri: https://github.com/hgkdzbf6/hector_gazebo.git
     version: kinetic-devel
 - git:
+    local-name: aprilslam
+    uri: https://github.com/hgkdzbf6/aprilslam.git
+    version: master
+- git:
     local-name: hector_localization
     uri: https://github.com/hgkdzbf6/hector_localization.git
     version: catkin
