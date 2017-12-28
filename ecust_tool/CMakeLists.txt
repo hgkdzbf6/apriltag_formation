@@ -35,9 +35,17 @@ find_package(catkin REQUIRED)
 ## * In this file (CMakeLists.txt):
 ##   * add "message_generation" and every package in MSG_DEP_SET to
 find_package(catkin REQUIRED COMPONENTS
+  control_toolbox
+  controller_interface
+  geometry_msgs
+  hector_quadrotor_interface
+  hector_uav_msgs
   roscpp
   tf
-)
+  tf2_geometry_msgs
+  visualization_msgs
+  )
+include_directories(${catkin_INCLUDE_DIRS})
 ##   * add "message_runtime" and every package in MSG_DEP_SET to
 ##     catkin_package(CATKIN_DEPENDS ...)
 ##   * uncomment the add_*_files sections below as needed
@@ -214,5 +222,14 @@ add_executable(gpsTool
 )
 add_dependencies(gpsTool ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(gpsTool
+  ${catkin_LIBRARIES}
+)
+
+add_executable(controller
+  include/ecust_tool/controller.hpp
+  src/controller.cpp
+)
+add_dependencies(controller ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(controller
   ${catkin_LIBRARIES}
 )

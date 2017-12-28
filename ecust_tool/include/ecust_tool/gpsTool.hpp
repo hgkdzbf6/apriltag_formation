@@ -29,15 +29,15 @@ public:
 	int num;
 	GpsTool():num(0),gps_pub_flag(false){
 		ros::NodeHandle node;
-		this->gps_subscriber=node.subscribe("/fix",10,&GpsTool::gps_callback,this);
+		this->gps_subscriber=node.subscribe("fix",10,&GpsTool::gps_callback,this);
 		this->gps_velocity_subscriber=
-					node.subscribe("/fix_velocity",10,&GpsTool::gps_velocity_callback,this);
+					node.subscribe("fix_velocity",10,&GpsTool::gps_velocity_callback,this);
 		this->cam_pose_subscriber=
 					node.subscribe("camera_estimate_pose",10,&GpsTool::cam_callback,this);
 
-		this->gps_publisher=node.advertise<sensor_msgs::NavSatFix>("/fix0",10);
+		this->gps_publisher=node.advertise<sensor_msgs::NavSatFix>("fix0",10);
 		this->gps_velocity_publisher=
-					node.advertise<geometry_msgs::Vector3Stamped>("/fix_velocity0",10);
+					node.advertise<geometry_msgs::Vector3Stamped>("fix_velocity0",10);
 		this->cam_pose_publisher=node.advertise<geometry_msgs::PoseStamped>("/cam_estimate_pose",10);
 
 	}
