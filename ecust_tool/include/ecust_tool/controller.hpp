@@ -78,7 +78,7 @@ private:
 	std::string base_link_frame_, base_stabilized_frame_, world_frame_;
 
 public:
-	Controller(){
+	Controller():yaw_(0){
 	    ros::NodeHandle private_nh("~");
 
 	    private_nh.param<int>("x_axis", axes_.x.axis, 5);
