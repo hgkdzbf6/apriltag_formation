@@ -1,4 +1,4 @@
-cd ./aprilslam && git add . && git commit -m "PC upload" && git push origin kinetic-devel
+cd ./aprilslam && git add . && git commit -m "PC upload" && git push origin +master
 cd ..
 cd ./hector_quadrotor && git add . && git commit -m "PC upload" && git push origin kinetic-devel
 cd ..
