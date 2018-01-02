@@ -225,11 +225,29 @@ target_link_libraries(gpsTool
   ${catkin_LIBRARIES}
 )
 
+add_executable(imageTool
+  include/ecust_tool/imageTool.hpp
+  src/imageTool.cpp
+)
+add_dependencies(imageTool ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(imageTool
+  ${catkin_LIBRARIES}
+)
+
 add_executable(controller
   include/ecust_tool/controller.hpp
   src/controller.cpp
 )
 add_dependencies(controller ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(controller
+  ${catkin_LIBRARIES}
+)
+
+add_executable(ImageTransfer
+  include/ecust_tool/ImageTransfer.hpp
+  src/ImageTransfer.cpp
+)
+add_dependencies(ImageTransfer ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(ImageTransfer
   ${catkin_LIBRARIES}
 )

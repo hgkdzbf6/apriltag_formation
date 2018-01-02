@@ -1,3 +1,5 @@
+
+
 /*
  * gpsTool.hpp
  *
@@ -20,11 +22,12 @@ class GpsTool{
 public:
 	ros::Subscriber gps_subscriber;
 	ros::Subscriber gps_velocity_subscriber;
-	ros::Subscriber cam_pose_subscriber;
+	ros::Subscriber apriltags_subscriber;
 
 	ros::Publisher gps_publisher;
 	ros::Publisher gps_velocity_publisher;
-	ros::Publisher cam_pose_publisher;
+	ros::Publisher apriltags_publisher;
+
 	bool gps_pub_flag;
 	int num;
 	GpsTool():num(0),gps_pub_flag(false){
@@ -32,18 +35,20 @@ public:
 		this->gps_subscriber=node.subscribe("fix",10,&GpsTool::gps_callback,this);
 		this->gps_velocity_subscriber=
 					node.subscribe("fix_velocity",10,&GpsTool::gps_velocity_callback,this);
-		this->cam_pose_subscriber=
+		this->apriltags_subscriber=
 					node.subscribe("camera_estimate_pose",10,&GpsTool::cam_callback,this);
 
 		this->gps_publisher=node.advertise<sensor_msgs::NavSatFix>("fix0",10);
 		this->gps_velocity_publisher=
 					node.advertise<geometry_msgs::Vector3Stamped>("fix_velocity0",10);
-		this->cam_pose_publisher=node.advertise<geometry_msgs::PoseStamped>("/cam_estimate_pose",10);
+		this->apriltags_publisher=node.advertise<geometry_msgs::PoseStamped>("/cam_estimate_pose",10);
+
+
 
 	}
 	void cam_callback(const geometry_msgs::PoseStampedConstPtr& msg){
 		if(!gps_pub_flag){
-			this->cam_pose_publisher.publish(*msg);
+			this->apriltags_publisher.publish(*msg);
 		}
 	}
 
@@ -53,7 +58,7 @@ public:
 		}else{
 			gps_pub_flag=false;
 		}
-		
+
 		if(gps_pub_flag){
 			this->gps_publisher.publish(*msg);
 		}
@@ -69,3 +74,4 @@ public:
 	}
 };
 #endif    /* GPS_TOOL_ */
+
