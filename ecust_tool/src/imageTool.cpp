@@ -22,10 +22,10 @@ int main(int argc,char ** argv){
 	if(!node.getParam("pub_str",pub_str)){
 		pub_str="";
 	}
-	if(!node.getParam("sub_cam_info_str",sub_str)){
+	if(!node.getParam("sub_cam_info_str",sub_cam_info_str)){
 		sub_cam_info_str="";
 	}
-	if(!node.getParam("pub_cam_info_str",pub_str)){
+	if(!node.getParam("pub_cam_info_str",pub_cam_info_str)){
 		pub_cam_info_str="";
 	}
 	ImageTool imageTool(sub_str,pub_str,sub_cam_info_str,pub_cam_info_str);
