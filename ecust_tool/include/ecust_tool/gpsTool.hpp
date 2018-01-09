@@ -42,9 +42,6 @@ public:
 		this->gps_velocity_publisher=
 					node.advertise<geometry_msgs::Vector3Stamped>("fix_velocity0",10);
 		this->apriltags_publisher=node.advertise<geometry_msgs::PoseStamped>("/cam_estimate_pose",10);
-
-
-
 	}
 	void cam_callback(const geometry_msgs::PoseStampedConstPtr& msg){
 		if(!gps_pub_flag){
@@ -53,13 +50,15 @@ public:
 	}
 
 	void gps_callback(const sensor_msgs::NavSatFixConstPtr& msg){
-		if(num<120){
+		if(num<1){
 			gps_pub_flag=true;
 		}else{
+			//ROS_INFO("gps died!");
 			gps_pub_flag=false;
 		}
 
 		if(gps_pub_flag){
+			
 			this->gps_publisher.publish(*msg);
 		}
 		num++;
